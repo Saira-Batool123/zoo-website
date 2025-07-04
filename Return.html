@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Return Purchased Animal</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffaf0;
+      padding: 50px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .return-container {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.08);
+      max-width: 650px;
+      width: 100%;
+      border: 2px solid #f97316;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ea580c;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 5px;
+      font-size: 15px;
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      background-color: #f97316;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #ea580c;
+    }
+
+    .return-message {
+      margin-top: 25px;
+      background-color: #fef3c7;
+      padding: 20px;
+      border-left: 6px solid #f59e0b;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .return-message p {
+      margin: 6px 0;
+    }
+
+    /* Contact Info */
+    .contact-info {
+      margin-top: 30px;
+      background-color: #fffbe6;
+      border-left: 6px solid #ffcc00;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+
+    .contact-info p {
+      margin: 6px 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="return-container">
+    <h2>🐾 Return Purchased Animal</h2>
+    <form id="returnForm">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="contact">Contact Number:</label>
+      <input type="tel" id="contact" placeholder="+92XXXXXXXXXX" required>
+
+      <label for="animal">Select Animal to Return:</label>
+      <select id="animal" required>
+        <option value="">-- Choose Animal --</option>
+        <option>Lion</option>
+        <option>Elephant</option>
+        <option>Tiger</option>
+        <option>Parrot</option>
+        <option>Monkey</option>
+        <option>Camel</option>
+        <option>Horse</option>
+        <option>Snake</option>
+        <option>Penguin</option>
+        <option>Peacock</option>
+        <option>Turtle</option>
+        <option>Cheetah</option>
+        <option>Eagle</option>
+        <option>Rabbit</option>
+        <option>Cow</option>
+        <option>Dolphine</option>
+        <option>Rhinoceros</option>
+        <option>Deer</option>
+        <option>Sheep</option>
+        <option>Wolf</option>
+        <option>Bear</option>
+        <option>Fox</option>
+        <option>Dog</option>
+        <option>Girrafe</option>
+        <option>Zebra</option>
+        <option>Panda</option>
+        <option>Kangaroo</option>
+        <option>Flamingo</option>
+        <option>Crocodile</option>
+         <option>Owl</option>
+        
+      </select>
+
+      <label for="reason">Return Reason:</label>
+      <textarea id="reason" rows="4" placeholder="Tell us why you want to return..." required></textarea>
+
+      <label for="refundMethod">Select Refund Method:</label>
+      <select id="refundMethod" required>
+        <option value="">-- Select Method --</option>
+        <option>JazzCash</option>
+        <option>EasyPaisa</option>
+        <option>Bank Transfer</option>
+      </select>
+
+      <label for="account">Your Account / IBAN Number:</label>
+      <input type="text" id="account" placeholder="e.g. 0300xxxxxxx or IBAN#..." required>
+
+      <button class="submit-btn" type="submit">Return & Request Refund</button>
+    </form>
+
+    <div class="return-message" id="returnMsg">
+      <h3>✅ Return Request Submitted!</h3>
+      <p><strong>Name:</strong> <span id="rname"></span></p>
+      <p><strong>Animal Returned:</strong> <span id="ranimal"></span></p>
+      <p><strong>Reason:</strong> <span id="rreason"></span></p>
+      <p><strong>Refund via:</strong> <span id="rmethod"></span></p>
+      <p><strong>Account Info:</strong> <span id="raccount"></span></p>
+      <p><em>Refund will be processed within 3 to 5 working days.</em></p>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <p>📧 If you still face any issue, please contact us:</p>
+      <p><strong>Email:</strong> zoohelp@example.com</p>
+      <p><strong>Phone:</strong> +92-300-1234567</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("returnForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const animal = document.getElementById("animal").value;
+      const reason = document.getElementById("reason").value;
+      const method = document.getElementById("refundMethod").value;
+      const account = document.getElementById("account").value;
+
+      document.getElementById("rname").innerText = name;
+      document.getElementById("ranimal").innerText = animal;
+      document.getElementById("rreason").innerText = reason;
+      document.getElementById("rmethod").innerText = method;
+      document.getElementById("raccount").innerText = account;
+
+      document.getElementById("returnMsg").style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

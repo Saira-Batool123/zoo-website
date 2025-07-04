@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zoo Family Visit Booking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf4;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .visit-form-container {
+      background: white;
+      padding: 40px;
+      border-radius: 18px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 700px;
+      border: 2px solid #38a169;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2f855a;
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 18px;
+      display: block;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      background-color: #2f855a;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #276749;
+    }
+
+    .confirmation {
+      margin-top: 30px;
+      background-color: #e6fffa;
+      padding: 25px;
+      border-left: 6px solid #2f855a;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .confirmation h3 {
+      color: #2f855a;
+      margin-top: 0;
+    }
+
+    .payment-link {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #f59e0b;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .payment-link:hover {
+      background-color: #d97706;
+    }
+
+    .pay-instructions {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fffbe6;
+      border: 1px dashed #d4a017;
+      border-radius: 8px;
+    }
+
+    .pay-instructions strong {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="visit-form-container">
+  <h2>Family Visit - Book Your Tickets 🎟️</h2>
+
+  <form id="visitForm">
+    <label for="name">Family Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="members">Total Members:</label>
+    <input type="number" id="members" min="1" required>
+
+    <label for="contact">Contact Number:</label>
+    <input type="tel" id="contact" placeholder="+92XXXXXXXXXX" required>
+
+    <label for="address">Family Address:</label>
+    <textarea id="address" rows="4" required></textarea>
+
+    <label for="payment">Payment Method:</label>
+    <select id="payment" required>
+      <option value="">-- Select Method --</option>
+      <option value="EasyPaisa">EasyPaisa</option>
+      <option value="JazzCash">JazzCash</option>
+      <option value="Bank Transfer">Bank Transfer</option>
+      <option value="Cash at Gate">Cash at Gate</option>
+    </select>
+
+    <button class="submit-btn" type="submit">Confirm & Show Receipt</button>
+  </form>
+
+  <div class="confirmation" id="confirmationBox">
+    <h3>✅ Ticket Confirmed!</h3>
+    <p><strong>Family:</strong> <span id="cname"></span></p>
+    <p><strong>Members:</strong> <span id="cmembers"></span></p>
+    <p><strong>Contact:</strong> <span id="ccontact"></span></p>
+    <p><strong>Address:</strong> <span id="caddress"></span></p>
+    <p><strong>Payment Method:</strong> <span id="cpayment"></span></p>
+    <p><strong>Total Ticket Price:</strong> Rs. <span id="ctotal"></span></p>
+    
+    <div class="pay-instructions" id="paymentDetails"></div>
+
+    <a href="#" target="_blank" class="payment-link">Proceed to Payment</a>
+  </div>
+</div>
+
+<!-- 🎬 Enjoy Now Floating Notification -->
+<div id="showNotification" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #d1fae5;
+  border: 2px solid #10b981;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  z-index: 1000;
+  max-width: 280px;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: left;
+  font-size: 14px;
+  display: none;
+">
+  <strong style="color: #065f46;">🎉 Now you can enjoy different shows!</strong>
+  <p style="color: #047857; margin: 8px 0 10px;">
+    Click below to explore all fun activities in the zoo.
+  </p>
+
+  <a href="enjoy.html" style="text-decoration: none;">
+    <button style="
+      background-color: #059669;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    ">
+      🎬 Enjoy Now
+    </button>
+  </a>
+</div>
+
+<!-- ✅ JavaScript Code -->
+<script>
+  document.getElementById("visitForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const members = parseInt(document.getElementById("members").value);
+    const contact = document.getElementById("contact").value;
+    const address = document.getElementById("address").value;
+    const payment = document.getElementById("payment").value;
+
+    const total = members * 200;
+
+    // Fill confirmation
+    document.getElementById("cname").innerText = name;
+    document.getElementById("cmembers").innerText = members;
+    document.getElementById("ccontact").innerText = contact;
+    document.getElementById("caddress").innerText = address;
+    document.getElementById("cpayment").innerText = payment;
+    document.getElementById("ctotal").innerText = total;
+
+    // Payment info
+    const payBox = document.getElementById("paymentDetails");
+    let info = `
+      <strong>Thanks for your booking!</strong>
+      <p>You can pay Rs. ${total} through any of the following methods:</p>
+      <ul>
+        <li><strong>JazzCash:</strong> 0300-1234567</li>
+        <li><strong>EasyPaisa:</strong> 0345-7654321</li>
+        <li><strong>Bank Transfer:</strong> Meezan Bank, Acc# 123456789</li>
+      </ul>
+      <p>After payment, send receipt to <strong>booking@myzoo.com</strong></p>
+      <p>If you selected <strong>Cash at Gate</strong>, please pay at the entry counter.</p>
+    `;
+
+    payBox.innerHTML = info;
+    document.getElementById("confirmationBox").style.display = "block";
+
+    // ✅ Show floating Enjoy Now notification
+    document.getElementById("showNotification").style.display = "block";
+  });
+</script>
+
+</body>
+</html>

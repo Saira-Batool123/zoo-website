@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buy Animal</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e9f5ee;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      margin: 0;
+    }
+
+    .buy-form-container {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 750px;
+      border: 2px solid #2e8b57;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2e8b57;
+      margin-bottom: 30px;
+    }
+
+    .buy-form label {
+      display: block;
+      margin-top: 18px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .buy-form input,
+    .buy-form textarea,
+    .buy-form select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .buy-form button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      background-color: #2e8b57;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .buy-form button:hover {
+      background-color: #1e6b40;
+    }
+
+    .confirmation {
+      margin-top: 35px;
+      background-color: #f0fff4;
+      padding: 25px;
+      border-left: 6px solid #2e8b57;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .confirmation h3 {
+      margin-top: 0;
+      color: #2e8b57;
+    }
+
+    .payment-link {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #ff9800;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    .payment-link:hover {
+      background-color: #e68900;
+    }
+
+    /* 🔁 Return notice style */
+    .return-box {
+      display: none;
+      margin-top: 30px;
+      background-color: #fff3cd;
+      border-left: 6px solid #ffc107;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .return-box h3 {
+      color: #856404;
+      margin-top: 0;
+    }
+
+    .return-link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #dc3545;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .return-link:hover {
+      background-color: #bb2d3b;
+    }
+  </style>
+</head>
+<body>
+  <div class="buy-form-container">
+    <h2>Buy Your Favorite Animal</h2>
+
+    <form id="buyForm" class="buy-form">
+      <label for="date">Order Date:</label>
+      <input type="text" id="date" readonly />
+
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" placeholder="+92XXXXXXXXXX" required />
+
+      <label for="animal">Select Animal:</label>
+      <select id="animal" required>
+        <option value="">-- Choose Animal --</option>
+        <option value="Lion">Lion</option>
+        <option value="Elephant">Elephant</option>
+        <option value="Zebra">Zebra</option>
+        <option value="Parrot">Parrot</option>
+        <option value="Peacock">Peacock</option>
+        <option value="Bear">Bear</option>
+        <option value="Deer">Deer</option>
+        <option value="Giraffe">Giraffe</option>
+        <option value="Fox">Fox</option>
+        <option value="Monkey">Monkey</option>
+        <option value="Wolf">Wolf</option>
+        <option value="Rabbit">Rabbit</option>
+        <option value="Cheetah">Cheetah</option>
+        <option value="Tiger">Tiger</option>
+        <option value="Horse">Horse</option>
+        <option value="Camel">Camel</option>
+        <option value="Crocodile">Crocodile</option>
+        <option value="Flamingo">Flamingo</option>
+        <option value="Kangaroo">Kangaroo</option>
+        <option value="Penguin">Penguin</option>
+        <option value="Turtle">Turtle</option>
+        <option value="Panda">Panda</option>
+        <option value="Snake">Snake</option>
+        <option value="Owl">Owl</option>
+        <option value="Sheep">Sheep</option>
+        <option value="Cow">Cow</option>
+        <option value="Dog">Dog</option>
+      </select>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" min="1" required />
+
+      <label for="payment">Payment Method:</label>
+      <select id="payment" required>
+        <option value="">Select Method</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+        <option value="Credit Card">Credit Card</option>
+        <option value="EasyPaisa">EasyPaisa</option>
+        <option value="JazzCash">JazzCash</option>
+      </select>
+
+      <label for="address">Your Address:</label>
+      <textarea id="address" rows="4" required></textarea>
+
+      <label>
+        <input type="checkbox" required />
+        I confirm that all information provided is correct.
+      </label>
+
+      <button type="submit">Place Order</button>
+    </form>
+
+    <div class="confirmation" id="confirmationBox">
+      <h3>✅ Order Successfully Placed!</h3>
+      <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+      <p><strong>Date:</strong> <span id="orderDate"></span></p>
+      <p><strong>Customer:</strong> <span id="confirmName"></span> (<span id="confirmEmail"></span>)</p>
+      <p><strong>Phone:</strong> <span id="confirmPhone"></span></p>
+      <p><strong>Animal:</strong> <span id="confirmAnimal"></span> × <span id="confirmQty"></span></p>
+      <p><strong>Total Price:</strong> $<span id="confirmPrice"></span></p>
+      <p><strong>Payment Method:</strong> <span id="confirmPayment"></span></p>
+      <p><strong>Address:</strong> <span id="confirmAddress"></span></p>
+
+      <a href="https://example.com/payment" target="_blank" class="payment-link">Proceed to Payment</a>
+    </div>
+
+    <!-- 🔁 Return Notification Box -->
+    <div class="return-box" id="returnBox">
+      <h3>🔔 Important Notice</h3>
+      <p>You can return the animal if you have an <strong>authentic reason</strong>. Refund will be provided.</p>
+      <a href="return.html" class="return-link">Return Animal</a>
+    </div>
+
+  </div>
+
+  <script>
+    const today = new Date().toLocaleDateString();
+    document.getElementById("date").value = today;
+
+    const animalPrices = {
+      "Lion": 1500, "Elephant": 2000, "Zebra": 1000, "Parrot": 800,
+      "Peacock": 1200, "Bear": 2100, "Deer": 700, "Giraffe": 1700,
+      "Fox": 950, "Monkey": 900, "Wolf": 1700, "Rabbit": 200,
+      "Cheetah": 1900, "Tiger": 1800, "Horse": 1500, "Camel": 1000,
+      "Crocodile": 1400, "Flamingo": 1100, "Kangaroo": 1300,
+      "Penguin": 1600, "Turtle": 600, "Panda": 2500, "Snake": 800,
+      "Owl": 600, "Sheep": 600, "Cow": 1000, "Dog": 800
+    };
+
+    document.getElementById("buyForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const animal = document.getElementById("animal").value;
+      const quantity = parseInt(document.getElementById("quantity").value);
+      const payment = document.getElementById("payment").value;
+      const address = document.getElementById("address").value;
+      const orderId = "ZOO" + Math.floor(Math.random() * 100000);
+
+      const unitPrice = animalPrices[animal] || 0;
+      const totalPrice = unitPrice * quantity;
+
+      document.getElementById("orderId").innerText = orderId;
+      document.getElementById("orderDate").innerText = today;
+      document.getElementById("confirmName").innerText = name;
+      document.getElementById("confirmEmail").innerText = email;
+      document.getElementById("confirmPhone").innerText = phone;
+      document.getElementById("confirmAnimal").innerText = animal;
+      document.getElementById("confirmQty").innerText = quantity;
+      document.getElementById("confirmPayment").innerText = payment;
+      document.getElementById("confirmAddress").innerText = address;
+      document.getElementById("confirmPrice").innerText = totalPrice;
+
+      document.getElementById("confirmationBox").style.display = "block";
+      document.getElementById("returnBox").style.display = "block"; // 👈 Show return option
+
+      document.getElementById("buyForm").reset();
+      document.getElementById("date").value = today;
+    });
+  </script>
+</body>
+</html>

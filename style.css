@@ -1,0 +1,73 @@
+/* ✅ General Reset */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* ✅ Navbar */
+.navbar {
+  background-color: rgba(2, 2, 2, 0.8);
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 10px 40px;         /* 🔄 Changed from 20px to 40px */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-tabs {
+  margin-right: 60px;         /* ✅ This moves tabs a bit left */
+}
+
+.nav-tabs a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-size: 18px;
+  white-space: nowrap;
+  padding: 8px 12px;
+  transition: background 0.3s;
+}
+
+.nav-tabs a:hover {
+  background-color: #ff9800;
+  border-radius: 5px;
+}
+
+/* ✅ Cover Background Section */
+.cover {
+  background-image: url('../images/background.jpg');  /* 🎯 Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  padding-top: 100px;           /* ✅ So it doesn't hide under navbar */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  color: white;
+}
+
+/* ✅ Welcome Text Styling */
+.welcome-text {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px;
+  border-radius: 10px;
+  margin-top: 30px;
+  max-width: 700px;
+}
+
+.welcome-text h1 {
+  font-size: 55px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.welcome-text p {
+  font-size: 20px;
+  margin: 0;
+}
